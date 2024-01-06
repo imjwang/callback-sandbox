@@ -25,12 +25,12 @@ export function PromptVisualizer({promptTemplate}: PromptVisualizerProps) {
 
   let promptVariables
 
-  if (promptTemplate.inputVariables.length) {
-    promptVariables = promptTemplate.inputVariables
+  if (promptTemplate.finalPrompt) {
+    const pipelinePromptNames = promptTemplate.pipelinePrompts.map(p => p.name)
+    promptVariables = [...promptTemplate.inputVariables, ...promptTemplate.finalPrompt.inputVariables].filter(v => !pipelinePromptNames.includes(v) && !Object.keys(promptTemplate.partialVariables).includes(v))
   }
   else {
-    const pipelinePromptNames = promptTemplate.pipelinePrompts.map(p => p.name)
-    promptVariables = promptTemplate.finalPrompt.inputVariables.filter(v => !pipelinePromptNames.includes(v) && !Object.keys(promptTemplate.partialVariables).includes(v))
+    promptVariables = promptTemplate.inputVariables
   }
 
 
