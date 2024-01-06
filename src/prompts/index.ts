@@ -2,13 +2,13 @@ import { PromptTemplate, ChatPromptTemplate, PipelinePromptTemplate, SystemMessa
 
 
 // PromptTemplate Example
-export default async function createPromptTemplate() {
-  const template = `Hi {subject} my name is {name}.`
-  const promptTemplate = PromptTemplate.fromTemplate(template)
-  const partialTemplate = await promptTemplate.partial({ subject: 'there'})
+// export default async function createPromptTemplate() {
+//   const template = `Hi {subject} my name is {name}.`
+//   const promptTemplate = PromptTemplate.fromTemplate(template)
+//   const partialTemplate = await promptTemplate.partial({ subject: 'there'})
 
-  return partialTemplate
-}
+//   return partialTemplate
+// }
 
 // PipelinePrompt and Partial Prompt Example
 // export default async function createPromptTemplate() {
@@ -42,16 +42,18 @@ export default async function createPromptTemplate() {
 
 
 // Chat Prompt Example
-// export default async function createPromptTemplate() {
-//   const systemTemplate = 'You are a helpful and good intentioned {character}.'
-//   const humanTemplate = '{question}'
-//   const aiTemplate = '{aiPrompt}'
+export default async function createPromptTemplate() {
+  const systemTemplate = 'You are a helpful and good intentioned {character}.'
+  const humanTemplate = '{question}'
+  const aiTemplate = '{aiPrompt}'
   
-//   const systemMessagePrompt = SystemMessagePromptTemplate.fromTemplate(systemTemplate)
-//   const humanMessagePrompt = HumanMessagePromptTemplate.fromTemplate(humanTemplate)
-//   const aiMessagePrompt = AIMessagePromptTemplate.fromTemplate(aiTemplate)
+  const systemMessagePrompt = SystemMessagePromptTemplate.fromTemplate(systemTemplate)
+  const humanMessagePrompt = HumanMessagePromptTemplate.fromTemplate(humanTemplate)
+  const aiMessagePrompt = AIMessagePromptTemplate.fromTemplate(aiTemplate)
   
-//   const chatPrompt = ChatPromptTemplate.fromMessages([systemMessagePrompt, humanMessagePrompt, aiMessagePrompt])
+  const chatPrompt = ChatPromptTemplate.fromMessages([systemMessagePrompt, humanMessagePrompt, aiMessagePrompt])
 
-//   return chatPrompt
-// }
+  const partialChatPrompt = await chatPrompt.partial({ character: 'sponge', question: 'How are you?' })
+
+  return partialChatPrompt
+}
