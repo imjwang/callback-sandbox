@@ -2,43 +2,44 @@ import { PromptTemplate, ChatPromptTemplate, PipelinePromptTemplate, SystemMessa
 
 
 // PromptTemplate Example
-// export default async function createPromptTemplate() {
-//   const template = `Hi {subject} my name is {name}.`
-//   const promptTemplate = PromptTemplate.fromTemplate(template)
-//   const partialTemplate = await promptTemplate.partial({ subject: 'there'})
+export default async function createPromptTemplate() {
+  const template = `Hi {subject} my name is {name}.`
+  const promptTemplate = PromptTemplate.fromTemplate(template)
+  const partialTemplate = await promptTemplate.partial({ subject: 'there'})
 
-//   return partialTemplate
-// }
+  return partialTemplate
+}
+
 
 // PipelinePrompt and Partial Prompt Example
-export default async function createPromptTemplate() {
-  const template = `You are Spongebob Squarepants.
+// export default async function createPromptTemplate() {
+//   const template = `You are Spongebob Squarepants.
 
-  'You are having a {mood} day and just got done with {activity}.'
+//   'You are having a {mood} day and just got done with {activity}.'
   
-  {slot}
+//   {slot}
     
-  {currentMessage}
-  `
+//   {currentMessage}
+//   `
   
-    const fullPrompt = PromptTemplate.fromTemplate(template)
+//     const fullPrompt = PromptTemplate.fromTemplate(template)
   
-    const zeroShotPrompt = PromptTemplate.fromTemplate(`Let's think {thoughtPolicy}.`)
+//     const zeroShotPrompt = PromptTemplate.fromTemplate(`Let's think {thoughtPolicy}.`)
   
-    const promptTemplate = new PipelinePromptTemplate({
-      pipelinePrompts: [
-        {
-          name: "slot",
-          prompt: zeroShotPrompt
-        },
-      ],
-      finalPrompt: fullPrompt,
-    })
+//     const promptTemplate = new PipelinePromptTemplate({
+//       pipelinePrompts: [
+//         {
+//           name: "slot",
+//           prompt: zeroShotPrompt
+//         },
+//       ],
+//       finalPrompt: fullPrompt,
+//     })
 
-    const partialTemplate = await promptTemplate.partial({ mood: 'good', activity: 'work' })
+//     const partialTemplate = await promptTemplate.partial({ mood: 'good', activity: 'work' })
 
-    return partialTemplate
-}
+//     return partialTemplate
+// }
 
 
 // Chat Prompt Example
