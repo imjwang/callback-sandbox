@@ -1,2 +1,3 @@
-# 🚧 Prompt Sandbox for Langchain.js.
+# 🚧 Callback Sandbox for Langchain.js.
+
 README is TODO
