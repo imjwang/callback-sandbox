@@ -1,5 +1,12 @@
 import { BaseCallbackHandler } from "langchain/callbacks";
 import toast from 'react-hot-toast';
+import { Serialized } from "langchain/load/serializable";
+import { LLMResult, BaseMessage } from "langchain/schema";
+import { ChainValues } from "langchain/schema";
+import { AgentAction, AgentFinish } from "langchain/schema";
+import { Document } from 'langchain/document';
+
+
 
 export class CustomHandler extends BaseCallbackHandler {
   name = "custom handler name";
@@ -64,7 +71,7 @@ export class CustomHandler extends BaseCallbackHandler {
     toast("Retriever starting...")
   };
 
-  handleRetrieverEnd(documents: DocumentInterface<Record<string, any>>[], runId: string, parentRunId?: string | undefined, tags?: string[] | undefined): any {
+  handleRetrieverEnd(documents: Document[], runId: string, parentRunId?: string | undefined, tags?: string[] | undefined): any {
     toast("Retriever ended")
   };
 
